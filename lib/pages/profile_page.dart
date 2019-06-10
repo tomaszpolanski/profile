@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:profile/shared/font_icons.dart';
 import 'package:profile/shared/text.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -133,7 +134,73 @@ I enjoy roles where I can bring my significant experience to the table, but also
                 ],
               ),
             ),
-          )
+          ),
+          _Card(
+            title: Text('Human Languages'),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('Fluent English'),
+                Text('Native Polish'),
+                Text('Basic German'),
+              ],
+            ),
+          ),
+          _Card(
+            title: Text('Education & Certification'),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('2013 CSM – Certified Scrum Master'),
+                Text('2004 – 2009 Polish-Japanese Institute of Information '
+                    'Technology Warsaw System and network programming'),
+              ],
+            ),
+          ),
+          _Card(
+            title: Text('Programming Languages'),
+            child: Center(
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                alignment: WrapAlignment.spaceAround,
+                spacing: 40,
+                runSpacing: 20,
+                children: <Widget>[
+                  FloatingActionButton(
+                    tooltip: 'Mail',
+                    onPressed: () {},
+                    child: Icon(Font.mail),
+                  ),
+                  FloatingActionButton(
+                    tooltip: 'Twitter',
+                    onPressed: () {},
+                    child: Icon(Font.twitter),
+                  ),
+                  FloatingActionButton(
+                    tooltip: 'Medium',
+                    onPressed: () {},
+                    child: Icon(Font.medium),
+                  ),
+                  FloatingActionButton(
+                    tooltip: 'LinkedIn',
+                    onPressed: () {},
+                    child: Icon(Font.linkedin),
+                  ),
+                  FloatingActionButton(
+                    tooltip: 'Github',
+                    onPressed: () {},
+                    child: Icon(Font.github_circled),
+                  ),
+                  FloatingActionButton(
+                    tooltip: 'Skype',
+                    onPressed: () {},
+                    child: Icon(Font.skype),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -147,12 +214,16 @@ class _ProfileImage extends StatelessWidget {
       alignment: Alignment.centerLeft,
       children: <Widget>[
         Container(
-          color: Colors.yellowAccent,
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          margin: EdgeInsets.only(left: 150),
+          color: Theme.of(context).accentColor,
+          padding: EdgeInsets.only(left: 100, right: 20),
+          margin: EdgeInsets.only(left: 80),
           child: Text(
             'Tomek Polański',
-            style: Theme.of(context).textTheme.display2,
+            style: Theme.of(context).textTheme.headline.copyWith(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
+            textAlign: TextAlign.center,
           ),
         ),
         Image.asset(
