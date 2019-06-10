@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:profile/shared/text.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -7,7 +8,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
-      child: Column(
+      child: ListView(
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
@@ -95,6 +96,44 @@ I enjoy roles where I can bring my significant experience to the table, but also
               ],
             ),
           ),
+          _Card(
+            title: Text('Programming Languages'),
+            child: Center(
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.spaceBetween,
+                alignment: WrapAlignment.spaceAround,
+                spacing: 40,
+                runSpacing: 20,
+                children: <Widget>[
+                  KnowledgeCircle(
+                    percentage: 1,
+                    child: Text('Dart'),
+                  ),
+                  KnowledgeCircle(
+                    percentage: 0.95,
+                    child: Text('Kotlin'),
+                  ),
+                  KnowledgeCircle(
+                    percentage: 0.9,
+                    child: Text('Java'),
+                  ),
+                  KnowledgeCircle(
+                    percentage: 0.8,
+                    child: Text('C#'),
+                  ),
+                  KnowledgeCircle(
+                    percentage: 0.8,
+                    child: Text('F#'),
+                  ),
+                  KnowledgeCircle(
+                    percentage: 0.6,
+                    child: Text('JS'),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -160,6 +199,46 @@ class _Card extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class KnowledgeCircle extends StatelessWidget {
+  const KnowledgeCircle({
+    Key key,
+    this.percentage,
+    this.child,
+  }) : super(key: key);
+
+  final double percentage;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 130,
+      width: 130,
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          CircularProgressIndicator(
+            value: percentage,
+            strokeWidth: 14,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: DefaultTextStyle(
+                style: Theme.of(context)
+                    .textTheme
+                    .headline
+                    .copyWith(fontWeight: FontWeight.bold),
+                child: child,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

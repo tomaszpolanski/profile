@@ -33,9 +33,10 @@ class SmallParagraph extends StatelessWidget {
         ),
         for (final child in children)
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text('• '),
-              child,
+              Expanded(child: child),
             ],
           )
       ],
@@ -75,7 +76,7 @@ class BigParagraph extends StatelessWidget {
                     .subhead
                     .copyWith(fontWeight: FontWeight.bold),
               ),
-              child,
+              Expanded(child: child),
             ],
           )
       ],
