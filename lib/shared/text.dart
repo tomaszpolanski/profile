@@ -21,23 +21,26 @@ class SmallParagraph extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .subhead
-              .copyWith(fontWeight: FontWeight.bold),
+              .copyWith(fontWeight: FontWeight.bold, height: 1.2),
           child: title,
         ),
         DefaultTextStyle(
           style: Theme.of(context)
               .textTheme
               .subhead
-              .copyWith(fontStyle: FontStyle.italic),
+              .copyWith(fontStyle: FontStyle.italic, height: 1.2),
           child: subtitle,
         ),
         for (final child in children)
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('• '),
-              Expanded(child: child),
-            ],
+          DefaultTextStyle(
+            style: Theme.of(context).textTheme.subhead.copyWith(height: 1.2),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('• '),
+                Expanded(child: child),
+              ],
+            ),
           )
       ],
     );
@@ -74,7 +77,7 @@ class BigParagraph extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subhead
-                    .copyWith(fontWeight: FontWeight.bold),
+                    .copyWith(fontWeight: FontWeight.bold, height: 1.2),
               ),
               Expanded(child: child),
             ],

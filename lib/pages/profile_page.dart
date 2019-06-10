@@ -158,7 +158,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
             ),
           ),
           _Card(
-            title: Text('Programming Languages'),
+            title: Text('Contact'),
             child: Center(
               child: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.center,
@@ -254,7 +254,10 @@ class _Card extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             DefaultTextStyle(
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .title
+                  .copyWith(fontWeight: FontWeight.bold),
               child: title,
             ),
             SizedBox(height: 10),
