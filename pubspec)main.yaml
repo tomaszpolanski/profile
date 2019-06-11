@@ -1,0 +1,40 @@
+name: profile
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+   - images/
+
+  fonts:
+   - family:  Font
+     fonts:
+      - asset: fonts/Font.ttf
+
+fonts:
+  - family: Roboto
+    fonts:
+      - asset: fonts/Roboto-Thin.ttf
+        weight: 100
+      - asset: fonts/Roboto-Light.ttf
+        weight: 300
+      - asset: fonts/Roboto-Regular.ttf
+        weight: 400
+      - asset: fonts/Roboto-Medium.ttf
+        weight: 600
+      - asset: fonts/Roboto-Bold.ttf
+        weight: 700
+      - asset: fonts/Roboto-Black.ttf
+        weight: 900
