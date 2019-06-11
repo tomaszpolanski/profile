@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:profile/material_import.dart';
 import 'package:profile/shared/font_icons.dart';
 import 'package:profile/shared/text.dart';
 

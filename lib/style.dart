@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:profile/material_import.dart';
 
 const MaterialColor yellow = MaterialColor(
   _yellowPrimaryValue,

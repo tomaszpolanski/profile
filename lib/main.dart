@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:profile/material_import.dart';
 import 'package:profile/pages/profile_page.dart';
 import 'package:profile/style.dart' as style;
 
