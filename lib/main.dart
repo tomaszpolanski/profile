@@ -13,6 +13,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Tomek',
       theme: ThemeData(
+        fontFamily: 'Roboto',
         brightness: Brightness.light,
         primarySwatch: style.yellow,
       ),
