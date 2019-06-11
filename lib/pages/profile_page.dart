@@ -105,7 +105,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
                 runAlignment: WrapAlignment.spaceBetween,
                 alignment: WrapAlignment.spaceAround,
                 spacing: 40,
-                runSpacing: 20,
+                runSpacing: 26,
                 children: <Widget>[
                   KnowledgeCircle(
                     percentage: 1,
@@ -268,7 +268,7 @@ class _Card extends StatelessWidget {
             ),
             SizedBox(height: 10),
             DefaultTextStyle(
-              style: Theme.of(context).textTheme.subhead,
+              style: Theme.of(context).textTheme.subhead.copyWith(height: 1.2),
               child: child,
             ),
           ],
@@ -278,7 +278,7 @@ class _Card extends StatelessWidget {
   }
 }
 
-class KnowledgeCircle extends StatelessWidget {
+class KnowledgeCircle extends StatefulWidget {
   const KnowledgeCircle({
     Key key,
     this.percentage,
@@ -289,6 +289,29 @@ class KnowledgeCircle extends StatelessWidget {
   final Widget child;
 
   @override
+  _KnowledgeCircleState createState() => _KnowledgeCircleState();
+}
+
+class _KnowledgeCircleState extends State<KnowledgeCircle>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 900),
+    )..forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 130,
@@ -296,9 +319,14 @@ class KnowledgeCircle extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          CircularProgressIndicator(
-            value: percentage,
-            strokeWidth: 14,
+          AnimatedBuilder(
+            animation: _controller,
+            builder: (_, __) {
+              return CircularProgressIndicator(
+                value: widget.percentage * _controller.value,
+                strokeWidth: 18,
+              );
+            },
           ),
           Center(
             child: Padding(
@@ -308,7 +336,7 @@ class KnowledgeCircle extends StatelessWidget {
                     .textTheme
                     .headline
                     .copyWith(fontWeight: FontWeight.bold),
-                child: child,
+                child: widget.child,
               ),
             ),
           ),
