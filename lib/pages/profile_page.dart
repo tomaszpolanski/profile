@@ -163,6 +163,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
           _Card(
             title: Text('Programming Languages'),
             child: ResponsiveBuilder(
+              snapPoint: 900,
               builder: (context, size) {
                 return size == ScreenSize.narrow
                     ? Center(
@@ -212,7 +213,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
             title: Text('Contact'),
             child: ResponsiveBuilder(
               builder: (context, size) {
-                return size == ScreenSize.wide
+                return size == ScreenSize.narrow
                     ? Center(
                         child: Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,

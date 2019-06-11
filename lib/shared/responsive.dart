@@ -41,17 +41,22 @@ typedef ResponsiveWidgetBuilder = Widget Function(
 class ResponsiveBuilder extends StatelessWidget {
   const ResponsiveBuilder({
     Key key,
+    this.snapPoint = 700,
     @required this.builder,
   }) : super(key: key);
 
+  final double snapPoint;
   final ResponsiveWidgetBuilder builder;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return builder(context,
-            constraints.maxWidth > 700 ? ScreenSize.narrow : ScreenSize.wide);
+        return builder(
+            context,
+            constraints.maxWidth < snapPoint
+                ? ScreenSize.narrow
+                : ScreenSize.wide);
       },
     );
   }
