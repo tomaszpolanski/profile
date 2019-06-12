@@ -42,6 +42,7 @@ class ResponsiveWidget extends StatelessWidget {
 enum ScreenSize {
   wide,
   narrow,
+  tiny,
 }
 
 typedef ResponsiveWidgetBuilder = Widget Function(
@@ -50,22 +51,31 @@ typedef ResponsiveWidgetBuilder = Widget Function(
 class ResponsiveBuilder extends StatelessWidget {
   const ResponsiveBuilder({
     Key key,
-    this.snapPoint = 700,
+    this.snapPoint = 1140,
     @required this.builder,
   }) : super(key: key);
 
   final double snapPoint;
   final ResponsiveWidgetBuilder builder;
 
+  ScreenSize _size(BoxConstraints constraints) {
+    if (constraints.maxWidth >= snapPoint) {
+      return ScreenSize.wide;
+    } else if (constraints.maxWidth < snapPoint && constraints.maxWidth > 380) {
+      return ScreenSize.narrow;
+    } else {
+      return ScreenSize.tiny;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return builder(
-            context,
-            constraints.maxWidth < snapPoint
-                ? ScreenSize.narrow
-                : ScreenSize.wide);
+          context,
+          _size(constraints),
+        );
       },
     );
   }

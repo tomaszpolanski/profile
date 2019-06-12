@@ -90,7 +90,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 120),
+              padding: const EdgeInsets.symmetric(horizontal: 100),
               child: _ProfileImage(),
             ),
           ),
@@ -182,8 +182,12 @@ I enjoy roles where I can bring my significant experience to the table, but also
           ResponsiveBuilder(
             snapPoint: 1140,
             builder: (context, size) {
-              final child = size == ScreenSize.narrow
-                  ? Center(
+              final child = size == ScreenSize.wide
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: knowledge,
+                    )
+                  : Center(
                       child: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         runAlignment: WrapAlignment.spaceBetween,
@@ -192,14 +196,10 @@ I enjoy roles where I can bring my significant experience to the table, but also
                         runSpacing: 26,
                         children: knowledge,
                       ),
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: knowledge,
                     );
               return Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: size == ScreenSize.narrow ? 0 : 120,
+                  horizontal: size != ScreenSize.wide ? 0 : 120,
                 ),
                 child: _Card(
                   title: Text('Programming Languages'),
@@ -245,8 +245,12 @@ I enjoy roles where I can bring my significant experience to the table, but also
           ResponsiveBuilder(
             snapPoint: 1140,
             builder: (context, size) {
-              final child = size == ScreenSize.narrow
-                  ? Center(
+              final child = size == ScreenSize.wide
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: contacts,
+                    )
+                  : Center(
                       child: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         runAlignment: WrapAlignment.spaceBetween,
@@ -255,14 +259,10 @@ I enjoy roles where I can bring my significant experience to the table, but also
                         runSpacing: 20,
                         children: contacts,
                       ),
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: contacts,
                     );
               return Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: size == ScreenSize.narrow ? 0 : 120,
+                  horizontal: size != ScreenSize.wide ? 0 : 120,
                 ),
                 child: _Card(
                   title: Text('Contact'),
@@ -280,31 +280,46 @@ I enjoy roles where I can bring my significant experience to the table, but also
 class _ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.centerLeft,
-      children: <Widget>[
-        Container(
+    return ResponsiveBuilder(
+      builder: (context, size) {
+        final image = Image.asset(
+          'images/tomek_round.png',
+          width: 160,
+        );
+        final name = Container(
           width: double.infinity,
-          padding: EdgeInsets.only(left: 100, right: 20, top: 10, bottom: 10),
-          margin: EdgeInsets.only(left: 80),
           decoration: BoxDecoration(
             color: Theme.of(context).accentColor,
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
           child: Text(
-            'Tomek Polański',
+            size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
             style: Theme.of(context).textTheme.headline.copyWith(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
             textAlign: TextAlign.center,
           ),
-        ),
-        Image.asset(
-          'images/tomek_round.png',
-          width: 160,
-        ),
-      ],
+        );
+        return size != ScreenSize.tiny
+            ? Row(
+                children: <Widget>[
+                  image,
+                  SizedBox(width: 20),
+                  Expanded(child: name),
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  image,
+                  Transform.translate(
+                    offset: Offset(0, -20),
+                    child: name,
+                  ),
+                ],
+              );
+      },
     );
   }
 }
