@@ -1,3 +1,5 @@
+import 'dart:html' as html;
+
 import 'package:profile/material_import.dart';
 import 'package:profile/shared/font_icons.dart';
 import 'package:profile/shared/responsive.dart';
@@ -6,35 +8,38 @@ import 'package:profile/shared/text.dart';
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final window = html.window;
     final contacts = [
       FloatingActionButton(
         tooltip: 'Mail',
-        onPressed: () {},
+        onPressed: () => window.open('mailto:polanski.tomek@gmail.com', 'Mail'),
         child: Icon(Font.mail),
       ),
       FloatingActionButton(
         tooltip: 'Twitter',
-        onPressed: () {},
+        onPressed: () => window.open('https://twitter.com/tpolansk', 'Twitter'),
         child: Icon(Font.twitter),
       ),
       FloatingActionButton(
         tooltip: 'Medium',
-        onPressed: () {},
+        onPressed: () => window.open('https://medium.com/@tpolansk', 'Medium'),
         child: Icon(Font.medium),
       ),
       FloatingActionButton(
         tooltip: 'LinkedIn',
-        onPressed: () {},
+        onPressed: () => window.open(
+            'https://www.linkedin.com/in/tomaszpolanski/', 'LinkedIn'),
         child: Icon(Font.linkedin),
       ),
       FloatingActionButton(
         tooltip: 'Github',
-        onPressed: () {},
+        onPressed: () =>
+            window.open('https://github.com/tomaszpolanski', 'Github'),
         child: Icon(Font.github_circled),
       ),
       FloatingActionButton(
         tooltip: 'Skype',
-        onPressed: () {},
+        onPressed: () => window.open('skype:polanski.tomasz', 'Skype'),
         child: Icon(Font.skype),
       ),
     ];
