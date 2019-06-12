@@ -1,7 +1,6 @@
-import 'dart:html' as html;
-
-import 'package:profile/material_import.dart';
 import 'package:profile/shared/font_icons.dart';
+import 'package:profile/shared/html.dart' as html;
+import 'package:profile/shared/material_import.dart';
 import 'package:profile/shared/responsive.dart';
 import 'package:profile/shared/text.dart';
 
@@ -11,33 +10,39 @@ class ProfilePage extends StatelessWidget {
     final window = html.window;
     final contacts = [
       FloatingActionButton(
+        elevation: 2,
         tooltip: 'Mail',
         onPressed: () => window.open('mailto:polanski.tomek@gmail.com', 'Mail'),
         child: Icon(Font.mail),
       ),
       FloatingActionButton(
+        elevation: 2,
         tooltip: 'Twitter',
         onPressed: () => window.open('https://twitter.com/tpolansk', 'Twitter'),
         child: Icon(Font.twitter),
       ),
       FloatingActionButton(
+        elevation: 2,
         tooltip: 'Medium',
         onPressed: () => window.open('https://medium.com/@tpolansk', 'Medium'),
         child: Icon(Font.medium),
       ),
       FloatingActionButton(
+        elevation: 2,
         tooltip: 'LinkedIn',
         onPressed: () => window.open(
             'https://www.linkedin.com/in/tomaszpolanski/', 'LinkedIn'),
         child: Icon(Font.linkedin),
       ),
       FloatingActionButton(
+        elevation: 2,
         tooltip: 'Github',
         onPressed: () =>
             window.open('https://github.com/tomaszpolanski', 'Github'),
         child: Icon(Font.github_circled),
       ),
       FloatingActionButton(
+        elevation: 2,
         tooltip: 'Skype',
         onPressed: () => window.open('skype:polanski.tomasz', 'Skype'),
         child: Icon(Font.skype),
@@ -75,20 +80,29 @@ class ProfilePage extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           Container(
+            height: 260,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                   'images/droidcon.jpg',
                 ),
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: Center(child: _ProfileImage()),
+              padding: const EdgeInsets.symmetric(horizontal: 120),
+              child: _ProfileImage(),
             ),
           ),
           ResponsiveWidget(
+            builder: (context, child, size) {
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: size == ScreenSize.narrow ? 0 : 120,
+                ),
+                child: child,
+              );
+            },
             children: <Widget>[
               _Card(
                 title: Text('Nutshell'),
@@ -165,30 +179,44 @@ I enjoy roles where I can bring my significant experience to the table, but also
               ),
             ],
           ),
-          _Card(
-            title: Text('Programming Languages'),
-            child: ResponsiveBuilder(
-              snapPoint: 900,
-              builder: (context, size) {
-                return size == ScreenSize.narrow
-                    ? Center(
-                        child: Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          runAlignment: WrapAlignment.spaceBetween,
-                          alignment: WrapAlignment.spaceAround,
-                          spacing: 40,
-                          runSpacing: 26,
-                          children: knowledge,
-                        ),
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ResponsiveBuilder(
+            snapPoint: 1140,
+            builder: (context, size) {
+              final child = size == ScreenSize.narrow
+                  ? Center(
+                      child: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        runAlignment: WrapAlignment.spaceBetween,
+                        alignment: WrapAlignment.spaceAround,
+                        spacing: 40,
+                        runSpacing: 26,
                         children: knowledge,
-                      );
-              },
-            ),
+                      ),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: knowledge,
+                    );
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: size == ScreenSize.narrow ? 0 : 120,
+                ),
+                child: _Card(
+                  title: Text('Programming Languages'),
+                  child: child,
+                ),
+              );
+            },
           ),
           ResponsiveWidget(
+            builder: (context, child, size) {
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: size == ScreenSize.narrow ? 0 : 120,
+                ),
+                child: child,
+              );
+            },
             children: <Widget>[
               _Card(
                 title: Text('Human Languages'),
@@ -214,27 +242,34 @@ I enjoy roles where I can bring my significant experience to the table, but also
               ),
             ],
           ),
-          _Card(
-            title: Text('Contact'),
-            child: ResponsiveBuilder(
-              builder: (context, size) {
-                return size == ScreenSize.narrow
-                    ? Center(
-                        child: Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          runAlignment: WrapAlignment.spaceBetween,
-                          alignment: WrapAlignment.spaceAround,
-                          spacing: 40,
-                          runSpacing: 20,
-                          children: contacts,
-                        ),
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ResponsiveBuilder(
+            snapPoint: 1140,
+            builder: (context, size) {
+              final child = size == ScreenSize.narrow
+                  ? Center(
+                      child: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        runAlignment: WrapAlignment.spaceBetween,
+                        alignment: WrapAlignment.spaceAround,
+                        spacing: 40,
+                        runSpacing: 20,
                         children: contacts,
-                      );
-              },
-            ),
+                      ),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: contacts,
+                    );
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: size == ScreenSize.narrow ? 0 : 120,
+                ),
+                child: _Card(
+                  title: Text('Contact'),
+                  child: child,
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -249,9 +284,13 @@ class _ProfileImage extends StatelessWidget {
       alignment: Alignment.centerLeft,
       children: <Widget>[
         Container(
-          color: Theme.of(context).accentColor,
-          padding: EdgeInsets.only(left: 100, right: 20),
+          width: double.infinity,
+          padding: EdgeInsets.only(left: 100, right: 20, top: 10, bottom: 10),
           margin: EdgeInsets.only(left: 80),
+          decoration: BoxDecoration(
+            color: Theme.of(context).accentColor,
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+          ),
           child: Text(
             'Tomek Polański',
             style: Theme.of(context).textTheme.headline.copyWith(

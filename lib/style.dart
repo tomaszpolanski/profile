@@ -1,4 +1,4 @@
-import 'package:profile/material_import.dart';
+import 'package:profile/shared/material_import.dart';
 
 const MaterialColor yellow = MaterialColor(
   _yellowPrimaryValue,

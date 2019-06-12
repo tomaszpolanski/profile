@@ -1,18 +1,26 @@
-import 'package:profile/material_import.dart';
+import 'package:profile/shared/material_import.dart';
 
 class ResponsiveWidget extends StatelessWidget {
   const ResponsiveWidget({
     Key key,
     @required this.children,
+    @required this.builder,
   }) : super(key: key);
 
   final List<Widget> children;
+  final Widget Function(
+    BuildContext context,
+    Widget child,
+    ScreenSize size,
+  ) builder;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return constraints.maxWidth < 700
+        final size =
+            constraints.maxWidth < 1140 ? ScreenSize.narrow : ScreenSize.wide;
+        final child = size == ScreenSize.narrow
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: children,
@@ -25,6 +33,7 @@ class ResponsiveWidget extends StatelessWidget {
                   ],
                 ),
               );
+        return builder(context, child, size);
       },
     );
   }

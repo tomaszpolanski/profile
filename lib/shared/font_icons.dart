@@ -21,7 +21,7 @@
 ///         License:   SIL ()
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
-import 'package:profile/material_import.dart';
+import 'package:profile/shared/material_import.dart';
 
 class Font {
   Font._();
