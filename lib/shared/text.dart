@@ -1,4 +1,4 @@
-import 'package:profile/shared/material_import.dart';
+import 'package:flutter/material.dart';
 
 class SmallParagraph extends StatelessWidget {
   const SmallParagraph({

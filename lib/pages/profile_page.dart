@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:profile/shared/font_icons.dart';
-import 'package:profile/shared/html.dart' as html;
-import 'package:profile/shared/material_import.dart';
 import 'package:profile/shared/responsive.dart';
 import 'package:profile/shared/text.dart';
+import 'package:universal_html/html.dart' as html;
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -84,7 +84,7 @@ class ProfilePage extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  'images/droidcon.jpg',
+                  'assets/droidcon.jpg',
                 ),
                 fit: BoxFit.cover,
               ),
@@ -283,20 +283,17 @@ class _ProfileImage extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (context, size) {
         final image = Image.asset(
-          'images/tomek_round.png',
+          'assets/tomek_round.png',
           width: 160,
         );
-        final name = Container(
+        final name = SizedBox(
           width: double.infinity,
-          decoration: BoxDecoration(
-            color: Theme.of(context).accentColor,
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-          ),
           child: Text(
             size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
             style: Theme.of(context).textTheme.headline.copyWith(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
+                  color: Theme.of(context).accentColor,
                 ),
             textAlign: TextAlign.center,
           ),
