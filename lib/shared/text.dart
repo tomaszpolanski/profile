@@ -37,7 +37,7 @@ class SmallParagraph extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('• '),
+                const Text('• '),
                 Expanded(child: child),
               ],
             ),

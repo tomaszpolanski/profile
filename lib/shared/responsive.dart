@@ -61,7 +61,7 @@ class ResponsiveBuilder extends StatelessWidget {
   ScreenSize _size(BoxConstraints constraints) {
     if (constraints.maxWidth >= snapPoint) {
       return ScreenSize.wide;
-    } else if (constraints.maxWidth < snapPoint && constraints.maxWidth > 380) {
+    } else if (constraints.maxWidth > 380) {
       return ScreenSize.narrow;
     } else {
       return ScreenSize.tiny;

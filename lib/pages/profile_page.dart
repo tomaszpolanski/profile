@@ -13,42 +13,42 @@ class ProfilePage extends StatelessWidget {
         elevation: 2,
         tooltip: 'Mail',
         onPressed: () => window.open('mailto:polanski.tomek@gmail.com', 'Mail'),
-        child: Icon(Font.mail),
+        child: const Icon(Font.mail),
       ),
       FloatingActionButton(
         elevation: 2,
         tooltip: 'Twitter',
         onPressed: () => window.open('https://twitter.com/tpolansk', 'Twitter'),
-        child: Icon(Font.twitter),
+        child: const Icon(Font.twitter),
       ),
       FloatingActionButton(
         elevation: 2,
         tooltip: 'Medium',
         onPressed: () => window.open('https://medium.com/@tpolansk', 'Medium'),
-        child: Icon(Font.medium),
+        child: const Icon(Font.medium),
       ),
       FloatingActionButton(
         elevation: 2,
         tooltip: 'LinkedIn',
         onPressed: () => window.open(
             'https://www.linkedin.com/in/tomaszpolanski/', 'LinkedIn'),
-        child: Icon(Font.linkedin),
+        child: const Icon(Font.linkedin),
       ),
       FloatingActionButton(
         elevation: 2,
         tooltip: 'Github',
         onPressed: () =>
             window.open('https://github.com/tomaszpolanski', 'Github'),
-        child: Icon(Font.github_circled),
+        child: const Icon(Font.github_circled),
       ),
       FloatingActionButton(
         elevation: 2,
         tooltip: 'Skype',
         onPressed: () => window.open('skype:polanski.tomasz', 'Skype'),
-        child: Icon(Font.skype),
+        child: const Icon(Font.skype),
       ),
     ];
-    final knowledge = [
+    const knowledge = [
       KnowledgeCircle(
         percentage: 1,
         child: Text('Dart'),
@@ -81,7 +81,7 @@ class ProfilePage extends StatelessWidget {
         children: <Widget>[
           Container(
             height: 260,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                   'assets/droidcon.jpg',
@@ -104,7 +104,7 @@ class ProfilePage extends StatelessWidget {
               );
             },
             children: <Widget>[
-              _Card(
+              const _Card(
                 title: Text('Nutshell'),
                 child: Text(
                     '''I'm Tomek; a mobile & web developer with 12 years' experience across Media, FinTech and Geo-Service industries.
@@ -114,10 +114,10 @@ I love that programming requires constant curiosity and self-improvement - I get
 I enjoy roles where I can bring my significant experience to the table, but also have the opportunity to learn from excellent peers, and ideally, share my skills with more junior colleagues.'''),
               ),
               _Card(
-                title: Text('Experience'),
+                title: const Text('Experience'),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                  children: const <Widget>[
                     SmallParagraph(
                       title: Text(
                           '2017 - Present - Groupon: Senior Flutter Developer'),
@@ -202,7 +202,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
                   horizontal: size != ScreenSize.wide ? 0 : 120,
                 ),
                 child: _Card(
-                  title: Text('Programming Languages'),
+                  title: const Text('Programming Languages'),
                   child: child,
                 ),
               );
@@ -219,10 +219,10 @@ I enjoy roles where I can bring my significant experience to the table, but also
             },
             children: <Widget>[
               _Card(
-                title: Text('Human Languages'),
+                title: const Text('Human Languages'),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                  children: const <Widget>[
                     Text('Fluent English'),
                     Text('Native Polish'),
                     Text('Basic German'),
@@ -230,10 +230,10 @@ I enjoy roles where I can bring my significant experience to the table, but also
                 ),
               ),
               _Card(
-                title: Text('Education & Certification'),
+                title: const Text('Education & Certification'),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                  children: const <Widget>[
                     Text('2013 CSM – Certified Scrum Master'),
                     Text('2004 – 2009 Polish-Japanese Institute of Information '
                         'Technology Warsaw System and network programming'),
@@ -265,7 +265,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
                   horizontal: size != ScreenSize.wide ? 0 : 120,
                 ),
                 child: _Card(
-                  title: Text('Contact'),
+                  title: const Text('Contact'),
                   child: child,
                 ),
               );
@@ -302,7 +302,7 @@ class _ProfileImage extends StatelessWidget {
             ? Row(
                 children: <Widget>[
                   image,
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Expanded(child: name),
                 ],
               )
@@ -311,7 +311,7 @@ class _ProfileImage extends StatelessWidget {
                 children: <Widget>[
                   image,
                   Transform.translate(
-                    offset: Offset(0, -20),
+                    offset: const Offset(0, -20),
                     child: name,
                   ),
                 ],
@@ -346,13 +346,13 @@ class _Card extends StatelessWidget {
                   .copyWith(fontWeight: FontWeight.bold),
               child: title,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               width: double.infinity,
               height: 10,
               color: Theme.of(context).accentColor,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             DefaultTextStyle(
               style: Theme.of(context).textTheme.subhead.copyWith(height: 1.2),
               child: child,
@@ -387,7 +387,7 @@ class _KnowledgeCircleState extends State<KnowledgeCircle>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 900),
     )..forward();
   }
 
