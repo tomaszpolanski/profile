@@ -108,7 +108,7 @@ class ProfilePage extends StatelessWidget {
               const _Card(
                 title: Text('Nutshell'),
                 child: Text(
-                    '''I'm Tomek; a mobile & web developer with 12 years' experience across Media, FinTech and Geo-Service industries.
+                    '''I'm Tomek; a mobile & web developer with 13 years' experience across Media, FinTech and Geo-Service industries.
 
 I love that programming requires constant curiosity and self-improvement - I get to solve puzzles and learn new things every single day.
 
@@ -297,8 +297,8 @@ class _ProfileImage extends StatelessWidget {
               child: Text(
                 size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
                 style: Theme.of(context).textTheme.headline.copyWith(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 45,
+                      fontWeight: FontWeight.w900,
                     ),
                 textAlign: TextAlign.center,
               ),
@@ -349,7 +349,7 @@ class _Card extends StatelessWidget {
             DefaultTextStyle(
               style: Theme.of(context)
                   .textTheme
-                  .title
+                  .headline
                   .copyWith(fontWeight: FontWeight.bold),
               child: title,
             ),
