@@ -18,10 +18,10 @@ class SmallParagraph extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         DefaultTextStyle(
-          style: Theme.of(context)
-              .textTheme
-              .subhead
-              .copyWith(fontWeight: FontWeight.bold, height: 1.2),
+          style: Theme.of(context).textTheme.subhead.copyWith(
+                fontWeight: FontWeight.bold,
+                height: 1.2,
+              ),
           child: title,
         ),
         DefaultTextStyle(

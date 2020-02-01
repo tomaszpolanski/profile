@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:profile/shared/font_icons.dart';
 import 'package:profile/shared/responsive.dart';
@@ -107,7 +108,7 @@ class ProfilePage extends StatelessWidget {
               const _Card(
                 title: Text('Nutshell'),
                 child: Text(
-                    '''I'm Tomek; a mobile & web developer with 12 years' experience across Media, FinTech and Geo-Service industries.
+                    '''I'm Tomek; a mobile & web developer with 13 years' experience across Media, FinTech and Geo-Service industries.
 
 I love that programming requires constant curiosity and self-improvement - I get to solve puzzles and learn new things every single day.
 
@@ -286,16 +287,22 @@ class _ProfileImage extends StatelessWidget {
           'assets/tomek_round.png',
           width: 160,
         );
-        final name = SizedBox(
+        final name = Container(
           width: double.infinity,
-          child: Text(
-            size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
-            style: Theme.of(context).textTheme.headline.copyWith(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).accentColor,
-                ),
-            textAlign: TextAlign.center,
+          child: Material(
+            borderRadius: BorderRadius.circular(10),
+            color: Theme.of(context).primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Text(
+                size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
+                style: Theme.of(context).textTheme.headline.copyWith(
+                      fontSize: 45,
+                      fontWeight: FontWeight.w900,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
         );
         return size != ScreenSize.tiny
@@ -342,7 +349,7 @@ class _Card extends StatelessWidget {
             DefaultTextStyle(
               style: Theme.of(context)
                   .textTheme
-                  .title
+                  .headline
                   .copyWith(fontWeight: FontWeight.bold),
               child: title,
             ),
@@ -376,6 +383,11 @@ class KnowledgeCircle extends StatefulWidget {
 
   @override
   _KnowledgeCircleState createState() => _KnowledgeCircleState();
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DoubleProperty('percentage', percentage));
+  }
 }
 
 class _KnowledgeCircleState extends State<KnowledgeCircle>

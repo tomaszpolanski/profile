@@ -1,18 +1,27 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ResponsiveWidget extends StatelessWidget {
   const ResponsiveWidget({
     Key key,
-    @required this.children,
-    @required this.builder,
-  }) : super(key: key);
+    @required
+        this.children,
+    @required
+        Widget Function(
+      BuildContext context,
+      Widget child,
+      ScreenSize size,
+    )
+            builder,
+  })  : _builder = builder,
+        super(key: key);
 
   final List<Widget> children;
   final Widget Function(
     BuildContext context,
     Widget child,
     ScreenSize size,
-  ) builder;
+  ) _builder;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,7 @@ class ResponsiveWidget extends StatelessWidget {
                   ],
                 ),
               );
-        return builder(context, child, size);
+        return _builder(context, child, size);
       },
     );
   }
@@ -52,11 +61,12 @@ class ResponsiveBuilder extends StatelessWidget {
   const ResponsiveBuilder({
     Key key,
     this.snapPoint = 1140,
-    @required this.builder,
-  }) : super(key: key);
+    @required ResponsiveWidgetBuilder builder,
+  })  : _builder = builder,
+        super(key: key);
 
   final double snapPoint;
-  final ResponsiveWidgetBuilder builder;
+  final ResponsiveWidgetBuilder _builder;
 
   ScreenSize _size(BoxConstraints constraints) {
     if (constraints.maxWidth >= snapPoint) {
@@ -72,11 +82,17 @@ class ResponsiveBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return builder(
+        return _builder(
           context,
           _size(constraints),
         );
       },
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DoubleProperty('snapPoint', snapPoint));
   }
 }
