@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:profile/shared/font_icons.dart';
 import 'package:profile/shared/responsive.dart';
@@ -286,16 +287,22 @@ class _ProfileImage extends StatelessWidget {
           'assets/tomek_round.png',
           width: 160,
         );
-        final name = SizedBox(
+        final name = Container(
           width: double.infinity,
-          child: Text(
-            size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
-            style: Theme.of(context).textTheme.headline.copyWith(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).accentColor,
-                ),
-            textAlign: TextAlign.center,
+          child: Material(
+            borderRadius: BorderRadius.circular(10),
+            color: Theme.of(context).primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Text(
+                size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
+                style: Theme.of(context).textTheme.headline.copyWith(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
         );
         return size != ScreenSize.tiny
@@ -376,6 +383,11 @@ class KnowledgeCircle extends StatefulWidget {
 
   @override
   _KnowledgeCircleState createState() => _KnowledgeCircleState();
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DoubleProperty('percentage', percentage));
+  }
 }
 
 class _KnowledgeCircleState extends State<KnowledgeCircle>
