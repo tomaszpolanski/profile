@@ -296,7 +296,7 @@ class _ProfileImage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Text(
                 size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
-                style: Theme.of(context).textTheme.headline.copyWith(
+                style: Theme.of(context).textTheme.headline5.copyWith(
                       fontSize: 45,
                       fontWeight: FontWeight.w900,
                     ),
@@ -349,7 +349,7 @@ class _Card extends StatelessWidget {
             DefaultTextStyle(
               style: Theme.of(context)
                   .textTheme
-                  .headline
+                  .headline5
                   .copyWith(fontWeight: FontWeight.bold),
               child: title,
             ),
@@ -361,7 +361,8 @@ class _Card extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             DefaultTextStyle(
-              style: Theme.of(context).textTheme.subhead.copyWith(height: 1.2),
+              style:
+                  Theme.of(context).textTheme.subtitle1.copyWith(height: 1.2),
               child: child,
             ),
           ],
@@ -432,7 +433,7 @@ class _KnowledgeCircleState extends State<KnowledgeCircle>
               child: DefaultTextStyle(
                 style: Theme.of(context)
                     .textTheme
-                    .headline
+                    .headline5
                     .copyWith(fontWeight: FontWeight.bold),
                 child: widget.child,
               ),
