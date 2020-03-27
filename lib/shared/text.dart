@@ -18,7 +18,7 @@ class SmallParagraph extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         DefaultTextStyle(
-          style: Theme.of(context).textTheme.subhead.copyWith(
+          style: Theme.of(context).textTheme.subtitle1.copyWith(
                 fontWeight: FontWeight.bold,
                 height: 1.2,
               ),
@@ -27,13 +27,13 @@ class SmallParagraph extends StatelessWidget {
         DefaultTextStyle(
           style: Theme.of(context)
               .textTheme
-              .subhead
+              .subtitle1
               .copyWith(fontStyle: FontStyle.italic, height: 1.2),
           child: subtitle,
         ),
         for (final child in children)
           DefaultTextStyle(
-            style: Theme.of(context).textTheme.subhead.copyWith(height: 1.2),
+            style: Theme.of(context).textTheme.subtitle1.copyWith(height: 1.2),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -76,7 +76,7 @@ class BigParagraph extends StatelessWidget {
                 '• ',
                 style: Theme.of(context)
                     .textTheme
-                    .subhead
+                    .subtitle1
                     .copyWith(fontWeight: FontWeight.bold, height: 1.2),
               ),
               Expanded(child: child),
