@@ -25,14 +25,14 @@ import 'package:flutter/material.dart';
 ///
 
 class Font {
-  Font._();
-
   static const _kFontFam = 'Font';
 
   static const IconData mail = IconData(0xe800, fontFamily: _kFontFam);
   static const IconData twitter = IconData(0xf099, fontFamily: _kFontFam);
-  static const IconData github_circled =
-      IconData(0xf09b, fontFamily: _kFontFam);
+  static const IconData github_circled = IconData(
+    0xf09b,
+    fontFamily: _kFontFam,
+  );
   static const IconData linkedin = IconData(0xf0e1, fontFamily: _kFontFam);
   static const IconData skype = IconData(0xf17e, fontFamily: _kFontFam);
   static const IconData medium = IconData(0xf23a, fontFamily: _kFontFam);
