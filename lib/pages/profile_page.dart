@@ -6,6 +6,8 @@ import 'package:profile/shared/text.dart';
 import 'package:universal_html/html.dart' as html;
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final window = html.window;
@@ -107,8 +109,8 @@ class ProfilePage extends StatelessWidget {
             children: <Widget>[
               const _Card(
                 title: Text('Nutshell'),
-                child: Text(
-                    '''I'm Tomek; a mobile & web developer with 13 years' experience across Media, FinTech and Geo-Service industries.
+                child: Text('''
+I'm Tomek; a mobile & web developer with 13 years' experience across Media, FinTech and Geo-Service industries.
 
 I love that programming requires constant curiosity and self-improvement - I get to solve puzzles and learn new things every single day.
 
@@ -132,7 +134,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
                         SmallParagraph(
                           title: Text('2017 - Friday.de: React.js Developer'),
                           subtitle: Text(
-                              'Basler\'s InsurTech venture (pre-launch) - JavaScript/TypeScript'),
+                              "Basler's InsurTech venture (pre-launch) - JavaScript/TypeScript"),
                           children: <Widget>[
                             Text(
                                 'launching B2C product with web-based React.js solution'),
@@ -165,7 +167,7 @@ I enjoy roles where I can bring my significant experience to the table, but also
                             Text(
                                 'collaborated with Microsoft on R&D, compatibility and global launch'),
                             Text(
-                                'extended Nokia\'s C++ map engine to integrate with Windows 8 C# environment'),
+                                "extended Nokia's C++ map engine to integrate with Windows 8 C# environment"),
                           ],
                         ),
                       ],
@@ -181,7 +183,6 @@ I enjoy roles where I can bring my significant experience to the table, but also
             ],
           ),
           ResponsiveBuilder(
-            snapPoint: 1140,
             builder: (context, size) {
               final child = size == ScreenSize.wide
                   ? Row(
@@ -244,7 +245,6 @@ I enjoy roles where I can bring my significant experience to the table, but also
             ],
           ),
           ResponsiveBuilder(
-            snapPoint: 1140,
             builder: (context, size) {
               final child = size == ScreenSize.wide
                   ? Row(
@@ -287,21 +287,18 @@ class _ProfileImage extends StatelessWidget {
           'assets/tomek_round.png',
           width: 160,
         );
-        final name = Container(
-          width: double.infinity,
-          child: Material(
-            borderRadius: BorderRadius.circular(10),
-            color: Theme.of(context).primaryColor,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Text(
-                size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
-                style: Theme.of(context).textTheme.headline5.copyWith(
-                      fontSize: 45,
-                      fontWeight: FontWeight.w900,
-                    ),
-                textAlign: TextAlign.center,
-              ),
+        final name = Material(
+          borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).primaryColor,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Text(
+              size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
+              style: Theme.of(context).textTheme.headline5.copyWith(
+                    fontSize: 45,
+                    fontWeight: FontWeight.w900,
+                  ),
+              textAlign: TextAlign.center,
             ),
           ),
         );
@@ -384,6 +381,7 @@ class KnowledgeCircle extends StatefulWidget {
 
   @override
   _KnowledgeCircleState createState() => _KnowledgeCircleState();
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
