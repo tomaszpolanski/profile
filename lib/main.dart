@@ -6,10 +6,12 @@ import 'package:profile/style.dart' as style;
 
 void main() {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
+  const App({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +27,7 @@ class App extends StatelessWidget {
         brightness: Brightness.light,
         primarySwatch: style.yellow,
       ),
-      home: ProfilePage(),
+      home: const ProfilePage(),
     );
   }
 }
