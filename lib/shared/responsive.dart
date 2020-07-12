@@ -1,27 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+typedef ResponsiveChildBuilder = Widget Function(
+  BuildContext context,
+  Widget child,
+  ScreenSize size,
+);
+
 class ResponsiveWidget extends StatelessWidget {
   const ResponsiveWidget({
     Key key,
-    @required
-        this.children,
-    @required
-        Widget Function(
-      BuildContext context,
-      Widget child,
-      ScreenSize size,
-    )
-            builder,
+    @required this.children,
+    @required ResponsiveChildBuilder builder,
   })  : _builder = builder,
         super(key: key);
 
   final List<Widget> children;
-  final Widget Function(
-    BuildContext context,
-    Widget child,
-    ScreenSize size,
-  ) _builder;
+  final ResponsiveChildBuilder _builder;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +50,9 @@ enum ScreenSize {
 }
 
 typedef ResponsiveWidgetBuilder = Widget Function(
-    BuildContext context, ScreenSize size);
+  BuildContext context,
+  ScreenSize size,
+);
 
 class ResponsiveBuilder extends StatelessWidget {
   const ResponsiveBuilder({
