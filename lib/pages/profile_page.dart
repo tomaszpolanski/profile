@@ -1,58 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:profile/pages/profile/section/contact_section.dart';
 import 'package:profile/pages/profile/section/knowledge_section.dart';
-import 'package:profile/shared/font_icons.dart';
 import 'package:profile/shared/responsive.dart';
 import 'package:profile/shared/text.dart';
-import 'package:universal_html/html.dart' as html;
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final window = html.window;
-    final contacts = [
-      FloatingActionButton(
-        elevation: 2,
-        tooltip: 'Mail',
-        onPressed: () => window.open('mailto:polanski.tomek@gmail.com', 'Mail'),
-        child: const Icon(Font.mail),
-      ),
-      FloatingActionButton(
-        elevation: 2,
-        tooltip: 'Twitter',
-        onPressed: () => window.open('https://twitter.com/tpolansk', 'Twitter'),
-        child: const Icon(Font.twitter),
-      ),
-      FloatingActionButton(
-        elevation: 2,
-        tooltip: 'Medium',
-        onPressed: () => window.open('https://medium.com/@tpolansk', 'Medium'),
-        child: const Icon(Font.medium),
-      ),
-      FloatingActionButton(
-        elevation: 2,
-        tooltip: 'LinkedIn',
-        onPressed: () => window.open(
-            'https://www.linkedin.com/in/tomaszpolanski/', 'LinkedIn'),
-        child: const Icon(Font.linkedin),
-      ),
-      FloatingActionButton(
-        elevation: 2,
-        tooltip: 'Github',
-        onPressed: () =>
-            window.open('https://github.com/tomaszpolanski', 'Github'),
-        child: const Icon(Font.github_circled),
-      ),
-      FloatingActionButton(
-        elevation: 2,
-        tooltip: 'Skype',
-        onPressed: () => window.open('skype:polanski.tomasz', 'Skype'),
-        child: const Icon(Font.skype),
-      ),
-    ];
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -199,35 +156,8 @@ I enjoy roles where I can bring my significant experience to the table, but also
               ],
             ),
           ),
-          SliverToBoxAdapter(
-            child: ResponsiveBuilder(
-              builder: (context, size) {
-                final child = size == ScreenSize.wide
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: contacts,
-                      )
-                    : Center(
-                        child: Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          runAlignment: WrapAlignment.spaceBetween,
-                          alignment: WrapAlignment.spaceAround,
-                          spacing: 40,
-                          runSpacing: 20,
-                          children: contacts,
-                        ),
-                      );
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size != ScreenSize.wide ? 0 : 120,
-                  ),
-                  child: CardSection(
-                    title: const Text('Contact'),
-                    child: child,
-                  ),
-                );
-              },
-            ),
+          const SliverToBoxAdapter(
+            child: ContactSection(),
           ),
         ],
       ),

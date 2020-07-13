@@ -1,80 +1,62 @@
-import 'dart:core';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:profile/pages/profile_page.dart';
-import 'package:profile/shared/appear_sliver.dart';
 import 'package:profile/shared/responsive.dart';
+import 'package:profile/shared/visibility_builder.dart';
 
-class KnowledgeSection extends StatefulWidget {
+class KnowledgeSection extends StatelessWidget {
   const KnowledgeSection({Key key}) : super(key: key);
 
   @override
-  _KnowledgeSectionState createState() => _KnowledgeSectionState();
-}
-
-class _KnowledgeSectionState extends State<KnowledgeSection> {
-  double percentage = 0;
-
-  @override
   Widget build(BuildContext context) {
-    return SliverValueChanged(
-      onConstraintsChanged: (_) {},
-      onGeometryChanged: (geometry) {
-        final percentage = geometry.paintExtent / geometry.maxPaintExtent;
-        if (this.percentage != percentage) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            setState(() {
-              this.percentage = percentage;
-            });
-          });
-        }
-      },
-      child: ResponsiveBuilder(
-        builder: (context, size) {
-          const _knowledge = [
-            _Knowledge('Dart', 1),
-            _Knowledge('Kotlin', 0.95),
-            _Knowledge('Java', 0.9),
-            _Knowledge('C#', 0.8),
-            _Knowledge('F#', 0.8),
-            _Knowledge('JS', 0.6),
-          ];
-          final children = _knowledge
-              .mapIndexed(
-                (index, item) => _KnowledgeCircle(
-                  visible: percentage >= (index + 1) / _knowledge.length,
-                  percentage: item.percentage,
-                  child: Text(item.name),
-                ),
-              )
-              .toList(growable: false);
-          final child = size == ScreenSize.wide
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: children,
-                )
-              : Center(
-                  child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    runAlignment: WrapAlignment.spaceBetween,
-                    alignment: WrapAlignment.spaceAround,
-                    spacing: 40,
-                    runSpacing: 26,
-                    children: children,
+    return VisibilityBuilder(
+      builder: (context, percentage) {
+        return ResponsiveBuilder(
+          builder: (context, size) {
+            const _knowledge = [
+              _Knowledge('Dart', 1),
+              _Knowledge('Kotlin', 0.95),
+              _Knowledge('Java', 0.9),
+              _Knowledge('C#', 0.8),
+              _Knowledge('F#', 0.8),
+              _Knowledge('JS', 0.6),
+            ];
+            final children = _knowledge
+                .mapIndexed(
+                  (index, item) => _KnowledgeCircle(
+                    visible: percentage >= (index + 1) / _knowledge.length,
+                    percentage: item.percentage,
+                    child: Text(item.name),
                   ),
-                );
-          return Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: size != ScreenSize.wide ? 0 : 120,
-            ),
-            child: CardSection(
-              title: const Text('Programming Languages'),
-              child: child,
-            ),
-          );
-        },
-      ),
+                )
+                .toList(growable: false);
+            final child = size == ScreenSize.wide
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: children,
+                  )
+                : Center(
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      runAlignment: WrapAlignment.spaceBetween,
+                      alignment: WrapAlignment.spaceAround,
+                      spacing: 40,
+                      runSpacing: 26,
+                      children: children,
+                    ),
+                  );
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: size != ScreenSize.wide ? 0 : 120,
+              ),
+              child: CardSection(
+                title: const Text('Programming Languages'),
+                child: child,
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
