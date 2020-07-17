@@ -104,7 +104,14 @@ class _KnowledgeCircle extends StatefulWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DoubleProperty('percentage', percentage));
+    properties
+      ..add(DoubleProperty('percentage', percentage))
+      ..add(FlagProperty(
+        'visible',
+        value: visible,
+        ifTrue: 'visible',
+        ifFalse: 'invisible',
+      ));
   }
 }
 
@@ -129,10 +136,8 @@ class _KnowledgeCircleState extends State<_KnowledgeCircle>
 
   @override
   void didUpdateWidget(_KnowledgeCircle oldWidget) {
-    if (widget.visible != oldWidget.visible) {
-      if (widget.visible) {
-        _controller.forward();
-      }
+    if (widget.visible && _controller.status == AnimationStatus.dismissed) {
+      _controller.forward();
     }
     super.didUpdateWidget(oldWidget);
   }

@@ -69,7 +69,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
+                padding: const EdgeInsets.symmetric(horizontal: 80),
                 child: _ProfileImage(),
               ),
             ),
