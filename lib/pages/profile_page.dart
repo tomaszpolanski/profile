@@ -1,10 +1,37 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:profile/pages/profile/section/header_image_section.dart';
 import 'package:profile/pages/profile/section/knowledge_section.dart';
 import 'package:profile/shared/font_icons.dart';
 import 'package:profile/shared/responsive.dart';
 import 'package:profile/shared/text.dart';
 import 'package:universal_html/html.dart' as html;
+
+class ParallaxImage extends StatelessWidget {
+  const ParallaxImage(
+    this.asset,
+    this.percentage, {
+    Key key,
+  }) : super(key: key);
+
+  final String asset;
+  final double percentage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      asset,
+      fit: BoxFit.fitHeight,
+      alignment: Alignment(0, -0.5 + percentage),
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(StringProperty('asset', asset));
+  }
+}
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key key}) : super(key: key);
@@ -57,23 +84,7 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Container(
-              height: 260,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    'assets/droidcon.jpg',
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
-                child: _ProfileImage(),
-              ),
-            ),
-          ),
+          const HeaderImageSection(),
           SliverToBoxAdapter(
             child: ResponsiveWidget(
               builder: (context, child, size) {
@@ -231,53 +242,6 @@ I enjoy roles where I can bring my significant experience to the table, but also
           ),
         ],
       ),
-    );
-  }
-}
-
-class _ProfileImage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, size) {
-        final image = Image.asset(
-          'assets/tomek_round.png',
-          width: 160,
-        );
-        final name = Material(
-          borderRadius: BorderRadius.circular(10),
-          color: Theme.of(context).primaryColor,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Text(
-              size == ScreenSize.tiny ? 'Tomek' : 'Tomek Polański',
-              style: Theme.of(context).textTheme.headline5.copyWith(
-                    fontSize: 45,
-                    fontWeight: FontWeight.w900,
-                  ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        );
-        return size != ScreenSize.tiny
-            ? Row(
-                children: <Widget>[
-                  image,
-                  const SizedBox(width: 20),
-                  Expanded(child: name),
-                ],
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  image,
-                  Transform.translate(
-                    offset: const Offset(0, -20),
-                    child: name,
-                  ),
-                ],
-              );
-      },
     );
   }
 }
